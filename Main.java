@@ -21,8 +21,8 @@ public class Main {
         singleselect(driver);
         multiselect(driver);
         alertbox(driver);
-        brokenLinks(driver);
         alert(driver);
+        brokenLinks(driver);
         driver.manage().window().minimize();
         driver.manage().window().maximize();
         driver.quit();
@@ -75,7 +75,10 @@ public class Main {
         System.out.println("\nAll options- \n"+element.getText());
 
         List<WebElement> opt = select.getAllSelectedOptions();
-        System.out.println("\nAll selected options- \n"+element.getText());
+        System.out.println("\nAll selected options-");
+        for(WebElement e: opt){
+            System.out.println(e.getText());
+        }
         driver.findElement(By.xpath("//*[@id=\"post-body-3647323225296998740\"]/div[1]/form[2]/table/tbody/tr/td[2]/input[1]")).click();
     }
     private static void alertbox(WebDriver driver) throws InterruptedException {
@@ -125,15 +128,15 @@ public class Main {
                         System.out.println("\n");
                         System.err.println(hyperLink.getText() + " | " + url + " is a BROKEN link");
                     } else {
+                        System.out.println("\n");
                         System.out.println(hyperLink.getText() + " | " + url + " is a VALID link");
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
             } else {
-                System.err.println("Href attribute is null for the link with text: " + hyperLink.getText());
+                System.err.println("\nHref attribute is null for the link with text: " + hyperLink.getText());
             }
         }
     }
-
 }
